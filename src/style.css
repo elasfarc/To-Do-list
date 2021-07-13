@@ -1,3 +1,85 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 0.625rem;
+}
 body {
+  display: flex;
+  justify-content: center;
   background-color: rgb(246, 246, 246);
+  font-family: "Open Sans", sans-serif;
+  font-weight: 100;
+}
+li {
+  list-style-type: none;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  border: 2px solid green;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.header {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  font-style: oblique;
+}
+.list-container {
+  background-color: white;
+  width: 70%;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.603);
+  font-size: 2rem;
+}
+
+.task,
+.rmv-completed,
+.form {
+  padding: 1em;
+  border-bottom: 2px solid rgb(235, 235, 235);
+}
+.form {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid rgb(235, 235, 235);
+  font-style: italic;
+  font-size: inherit;
+  letter-spacing: 1.5px;
+}
+.form:focus {
+  outline: none;
+}
+.form::placeholder {
+  opacity: 0.6;
+  word-spacing: 1px;
+  letter-spacing: 0;
+}
+.task .internal-text {
+  margin-left: 1rem;
+}
+.task .internal-checkbox {
+}
+.rmv-completed {
+  background-color: rgb(246, 246, 246);
+  text-align: center;
+}
+.rmv-completed-action:link,
+.rmv-completed-action:visited {
+  text-decoration: none;
+  color: rgb(166, 166, 166);
+}
+.rmv-completed-action:hover {
+  text-decoration: underline;
+  color: #000;
 }

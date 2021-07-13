@@ -26,13 +26,24 @@ function displayTasks(){
     .sort((a,b)=>(a.index - b.index))
     .forEach(task => {
         let listItem = document.createElement('li');
-        listItem.innerText = task.description;
-        fragment.append(listItem)
+        // let checkbox = document.createElement('input');
+        // checkbox.type = 'checkbox';
+        // listItem.prepend(checkbox)
+        // console.log(listItem)
+        // listItem.innerText = task.description;
+         listItem.classList.add('task');
+        listItem.innerHTML = `
+        
+            <input class='internal-checkbox' type="checkbox" type="checkbox">
+            <span class='internal-text'>${task.description}</span>
+        
+        `
+        fragment.append(listItem);
     });
     return fragment;
 }
 
- let tasksWrapper = document.querySelector('.list-container');
+ let tasksWrapper = document.querySelector('.list-wrapper');
  tasksWrapper.append(displayTasks());
 
 
