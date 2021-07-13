@@ -1,12 +1,38 @@
 import myValue from './test.js';
+//import Task from './task.js'
 import './style.css';
 
-function component() {
-  const element = document.createElement('div');
+const tasks = [
+    {
+        description: 'task4',
+        completed: false,
+        index: 4
+    }, 
+       {
+        description: 'task2',
+        completed: false,
+        index: 2
+    },
+        {
+        description: 'task3',
+        completed: false,
+        index: 3
+    }
 
-  element.innerHTML = myValue();
-
-  return element;
+]
+function displayTasks(){
+    let fragment = document.createDocumentFragment();
+    tasks
+    .sort((a,b)=>(a.index - b.index))
+    .forEach(task => {
+        let listItem = document.createElement('li');
+        listItem.innerText = task.description;
+        fragment.append(listItem)
+    });
+    return fragment;
 }
 
-document.body.appendChild(component());
+ let tasksWrapper = document.querySelector('.list-container');
+ tasksWrapper.append(displayTasks());
+
+
