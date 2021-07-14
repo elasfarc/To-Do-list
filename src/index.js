@@ -1,49 +1,42 @@
-import myValue from './test.js';
-//import Task from './task.js'
 import './style.css';
 
 const tasks = [
-    {
-        description: 'task4',
-        completed: false,
-        index: 4
-    }, 
-       {
-        description: 'task2',
-        completed: false,
-        index: 2
-    },
-        {
-        description: 'task3',
-        completed: false,
-        index: 3
-    }
+  {
+    description: 'task4',
+    completed: false,
+    index: 4,
+  },
+  {
+    description: 'task2',
+    completed: false,
+    index: 2,
+  },
+  {
+    description: 'task3',
+    completed: false,
+    index: 3,
+  },
 
-]
-function displayTasks(){
-    let fragment = document.createDocumentFragment();
-    tasks
-    .sort((a,b)=>(a.index - b.index))
-    .forEach(task => {
-        let listItem = document.createElement('li');
-        // let checkbox = document.createElement('input');
-        // checkbox.type = 'checkbox';
-        // listItem.prepend(checkbox)
-        // console.log(listItem)
-        // listItem.innerText = task.description;
-         listItem.classList.add('task');
-        listItem.innerHTML = `
+];
+function displayTasks() {
+  const fragment = document.createDocumentFragment();
+  tasks
+    .sort((a, b) => (a.index - b.index))
+    .forEach((task) => {
+      const listItem = document.createElement('li');
+      listItem.classList.add('task');
+      listItem.innerHTML = `
         
             <input class='internal-checkbox' type="checkbox" type="checkbox">
             <span class='internal-text'>${task.description}</span>
-        
-        `
-        fragment.append(listItem);
+            <span class="icon-move">
+                <i class="icon fas fa-ellipsis-v"></i>
+            </span>
+        `;
+      fragment.append(listItem);
     });
-    return fragment;
+  return fragment;
 }
 
- let tasksWrapper = document.querySelector('.list-wrapper');
- tasksWrapper.append(displayTasks());
-
-
+const tasksWrapper = document.querySelector('.list-wrapper');
+tasksWrapper.append(displayTasks());
