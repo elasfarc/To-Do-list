@@ -4,7 +4,7 @@
 
 > a simple to do list
 
-![screen]()
+![screen](https://raw.githubusercontent.com/elasfarc/To-Do-list/feature-structure-list/sc.png)
 
 ## Built With
 
@@ -29,7 +29,7 @@ And then open your browser on the port 3000
 
 👤 Mohammed Al-Asfar
 
-- GitHub: [@githubhandle](https://github.com/elasfarc)
+- GitHub: [@github](https://github.com/elasfarc)
 
 ## Show your support
 
