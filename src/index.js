@@ -41,7 +41,6 @@ document.querySelectorAll('.task-status')
 .forEach(element => {
   element.addEventListener('change', event => {
     let index = event.target.parentElement.id;
-    console.log(event.target.parentElement, index);
     todo.statusUpdate(index);
   })
 })

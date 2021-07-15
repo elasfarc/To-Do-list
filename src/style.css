@@ -90,7 +90,13 @@ li {
   justify-content: space-between;
   align-items: baseline;
 }
-
+.task-status:checked {
+  opacity: 0;
+}
+.task-status:checked ~ .internal-text {
+  color:rgb(166, 166, 166);
+  text-decoration: line-through;
+}
 .task .internal-text {
   margin-right: auto;
   margin-left: 2rem;
