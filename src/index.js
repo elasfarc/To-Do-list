@@ -1,8 +1,10 @@
 import './style.css';
 import ToDoList from './todo.js';
-import closestElementToCurrentDrag from './domHelpers.js';
+
+import { closestElementToCurrentDrag, domAfterReorder } from './domHelpers.js';
 
 const todo = new ToDoList();
+const tasksWrapper = document.querySelector('.list-wrapper');
 
 function displayTasks() {
   const fragment = document.createDocumentFragment();
@@ -25,7 +27,6 @@ function displayTasks() {
   return fragment;
 }
 
-const tasksWrapper = document.querySelector('.list-wrapper');
 tasksWrapper.append(displayTasks());
 
 // event listeners  -> task status update
@@ -39,21 +40,23 @@ document.querySelectorAll('.task-status')
 
 // event listeners  -> drag/drop
 // elements (tasks) to be dragged
+
 document.querySelectorAll('.task')
   .forEach((task) => {
     task.addEventListener('dragstart', () => {
       task.classList.add('current-drag');
     });
-    task.addEventListener('dragend', () => {
+    task.addEventListener('dragend', (e) => {
       task.classList.remove('current-drag');
+
+      todo.updateIndex(domAfterReorder(e));
     });
   });
 
-// element to be dragged over (tasks' container)
-
 tasksWrapper.addEventListener('dragover', (event) => {
   event.preventDefault();
+  const currentDragableTask = document.querySelector('.current-drag');
   const { closest } = closestElementToCurrentDrag(tasksWrapper, event.clientY);
-  if (closest === undefined) tasksWrapper.appendChild(document.querySelector('.current-drag'));
-  else tasksWrapper.insertBefore(document.querySelector('.current-drag'), closest);
+  if (closest === undefined) tasksWrapper.appendChild(currentDragableTask);
+  else tasksWrapper.insertBefore(currentDragableTask, closest);
 });
