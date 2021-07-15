@@ -24,6 +24,7 @@ export default class ToDoList {
 
       ];
       this.#storage = JSON.parse(localStorage.getItem('tasks')) || this.seedTasks;
+      this.updateLocalStorage();
     }
 
     get storage() {
@@ -31,7 +32,19 @@ export default class ToDoList {
     }
 
     add() {
-      this.#storage.push({ description: '2AM', index: 45 });
-      localStorage.setItem('tasks', JSON.stringify(this.#storage));
+        // let added = { description: '2AM', index: 45, completed: false }
+        // this.statusUpdate();
+        // this.#storage.push(added);
     }
+
+    statusUpdate(i){
+        const completedTask = this.#storage.filter(task =>  task.index === parseInt(i)); 
+        completedTask[0].completed = !completedTask[0].completed;
+        this.updateLocalStorage();
+    }
+
+    updateLocalStorage(){
+        localStorage.setItem('tasks', JSON.stringify(this.#storage));
+    }
+
 }

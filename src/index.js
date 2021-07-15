@@ -10,9 +10,10 @@ function displayTasks() {
     .forEach((task) => {
       const listItem = document.createElement('li');
       listItem.classList.add('task');
+      listItem.id = task.index;
       listItem.innerHTML = `
         
-            <input class='internal-checkbox' type="checkbox" type="checkbox">
+            <input class='task-status' type="checkbox">
             <span class='internal-text'>${task.description}</span>
             <span class="icon-move">
                 <i class="icon fas fa-ellipsis-v"></i>
@@ -25,3 +26,22 @@ function displayTasks() {
 
 const tasksWrapper = document.querySelector('.list-wrapper');
 tasksWrapper.append(displayTasks());
+
+
+
+
+//////
+
+// todo.add();
+
+
+
+
+document.querySelectorAll('.task-status')
+.forEach(element => {
+  element.addEventListener('change', event => {
+    let index = event.target.parentElement.id;
+    console.log(event.target.parentElement, index);
+    todo.statusUpdate(index);
+  })
+})
