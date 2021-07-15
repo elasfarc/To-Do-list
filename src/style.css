@@ -127,3 +127,12 @@ li {
   text-decoration: underline;
   color: #000;
 }
+
+
+.task {
+  border: 2px dashed green;
+}
+
+.current-drag{
+  background-color: rgba(0, 0, 0, 0.07);
+}
