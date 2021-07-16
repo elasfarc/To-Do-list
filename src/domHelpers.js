@@ -73,3 +73,20 @@ export function emptyTaskComponent(task, obj){
   fragment.append(listItem);
   return fragment;
 }
+
+export function addTaskFirstClassFunc(ele, todoObj) {
+  
+  const tasksWrapper = document.querySelector('.list-wrapper');
+
+  ele.addEventListener('submit', function(event){
+    event.preventDefault();
+    const {task_description: addTaskInput} = event.target.elements;
+    let userInput = addTaskInput.value;
+    addTaskInput.value = '';
+    if(userInput.trim()){
+      let task = todoObj.addTask({description: userInput});
+      tasksWrapper.appendChild(emptyTaskComponent(task,todoObj ));
+    }
+  })
+
+}

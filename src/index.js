@@ -1,7 +1,7 @@
 import './style.css';
 import ToDoList from './todo.js';
 
-import { closestElementToCurrentDrag, displayTasks } from './domHelpers.js';
+import { closestElementToCurrentDrag, displayTasks, addTaskFirstClassFunc } from './domHelpers.js';
 
 
 const todo = new ToDoList();
@@ -18,3 +18,6 @@ tasksWrapper.addEventListener('dragover', (event) => {
 });
 
 
+const addForm = document.forms.add_task;
+
+addTaskFirstClassFunc(addForm, todo)

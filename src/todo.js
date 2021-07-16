@@ -19,6 +19,7 @@ export default class ToDoList {
       const task = new Task({ index: taskId, description });
       this.#storage.push(task);
       this.updateLocalStorage();
+      return task;
     }
 
     nextTaskId() {

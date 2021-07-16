@@ -74,12 +74,18 @@ li {
   font-size: inherit;
   letter-spacing: 1.5px;
 }
-
-.form:focus {
+.add-task-input {
+  width: 90%;
+  border: none;
+  font-style: italic;
+  font-size: inherit;
+  letter-spacing: 1.5px;
+}
+.add-task-input:focus {
   outline: none;
 }
 
-.form::placeholder {
+.add-task-input::placeholder {
   opacity: 0.6;
   word-spacing: 1px;
   letter-spacing: 0;
