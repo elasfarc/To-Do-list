@@ -1,38 +1,30 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
+import Task from './task.js';
 
 export default class ToDoList {
     #storage;
 
     constructor() {
-      this.seedTasks = [
-        {
-          description: 'do the grocery',
-          completed: false,
-          index: 1,
-        },
-        {
-          description: 'pay bills',
-          completed: false,
-          index: 2,
-        },
-        {
-          description: 'setup the modem',
-          completed: false,
-          index: 3,
-        }, {
-          description: 'home cleaning',
-          completed: false,
-          index: 4,
-        },
-
-      ];
-      this.#storage = JSON.parse(localStorage.getItem('tasks')) || this.seedTasks;
+      this.#storage = JSON.parse(localStorage.getItem('tasks')) || [];
       this.updateLocalStorage();
     }
 
     get storage() {
       return this.#storage;
+    }
+
+    addTask({ description }) {
+      const taskId = this.nextTaskId();
+      const task = new Task({ index: taskId, description });
+      this.#storage.push(task);
+      this.updateLocalStorage();
+    }
+
+    nextTaskId() {
+      const lastTaskIndex = this.#storage.length - 1;
+      const returnedID = (this.#storage.length > 0) ? (this.#storage[lastTaskIndex].index + 1) : 1;
+      return returnedID;
     }
 
     statusUpdate(i) {
