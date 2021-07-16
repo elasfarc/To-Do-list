@@ -90,16 +90,19 @@ li {
   justify-content: space-between;
   align-items: baseline;
 }
+
 .task-status:checked {
   opacity: 0;
 }
-.task-status:checked ~ .internal-text {
-  color:rgb(166, 166, 166);
-  text-decoration: line-through;
-}
+
 .task .internal-text {
   margin-right: auto;
   margin-left: 2rem;
+}
+
+.task-status:checked ~ .internal-text {
+  color: rgb(166, 166, 166);
+  text-decoration: line-through;
 }
 
 .task .icon-move {
@@ -128,11 +131,6 @@ li {
   color: #000;
 }
 
-
-.task {
-  border: 2px dashed green;
-}
-
-.current-drag{
+.current-drag {
   background-color: rgba(30, 216, 21, 0.373);
 }

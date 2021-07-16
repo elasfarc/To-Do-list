@@ -2,7 +2,7 @@ export function closestElementToCurrentDrag(tasksContainer, positionY) {
   const possibleElements = [...tasksContainer.querySelectorAll('.task:not(.current-drag)')];
   return possibleElements.reduce((accu, possibleElement) => {
     const dimensions = possibleElement.getBoundingClientRect();
-    const offset = positionY - dimensions.top - dimensions.height / 2;
+    const offset = positionY - dimensions.top - dimensions.height / 3;
     if (offset < 0 && offset > accu.offset) return { offset, closest: possibleElement };
     return accu;
   }, { offset: Number.NEGATIVE_INFINITY });
@@ -22,5 +22,5 @@ export function exchangeElements(parent, element1, element2) {
 
 export function domAfterReorder(e) {
   const childrenList = [...e.target.parentElement.children];
-  return childrenList.map((child) => child.id);
+  return childrenList.map((child) => ({ id: child.id, title: child.innerText }));
 }

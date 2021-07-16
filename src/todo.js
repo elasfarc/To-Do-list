@@ -1,5 +1,5 @@
-// import { json } from 'body-parser';
-// import Task from './task.js';
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 
 export default class ToDoList {
     #storage;
@@ -7,21 +7,21 @@ export default class ToDoList {
     constructor() {
       this.seedTasks = [
         {
-          description: '1',
+          description: 'do the grocery',
           completed: false,
           index: 1,
         },
         {
-          description: '2',
+          description: 'pay bills',
           completed: false,
           index: 2,
         },
         {
-          description: '3',
+          description: 'setup the modem',
           completed: false,
           index: 3,
         }, {
-          description: '4',
+          description: 'home cleaning',
           completed: false,
           index: 4,
         },
@@ -42,11 +42,15 @@ export default class ToDoList {
     }
 
     updateIndex(updatedIndexArr) {
-      for (let i = 0; i < updatedIndexArr.length; i += 1) {
-        const x = this.#storage
-          .find((task) => task.index === parseInt(updatedIndexArr[i], 10));
-        x.index = i + 1;
+      updatedIndexArr = updatedIndexArr.map((ele) => ele.title);
+      const output = [];
+      updatedIndexArr.forEach((element) => {
+        output.push(this.#storage.find((ele) => ele.description.trim() === element.trim()));
+      });
+      for (const i in output) {
+        output[i].index = parseInt(i, 10) + 1;
       }
+      this.#storage = output;
       this.updateLocalStorage();
     }
 

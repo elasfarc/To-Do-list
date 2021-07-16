@@ -8,8 +8,8 @@ const tasksWrapper = document.querySelector('.list-wrapper');
 
 function displayTasks() {
   const fragment = document.createDocumentFragment();
+
   todo.storage
-    .sort((a, b) => (a.index - b.index))
     .forEach((task) => {
       const listItem = document.createElement('li');
       listItem.classList.add('task');
@@ -48,7 +48,6 @@ document.querySelectorAll('.task')
     });
     task.addEventListener('dragend', (e) => {
       task.classList.remove('current-drag');
-
       todo.updateIndex(domAfterReorder(e));
     });
   });
