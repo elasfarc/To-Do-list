@@ -41,6 +41,18 @@ export default class ToDoList {
       this.updateLocalStorage();
     }
 
+    removeTask(taskId) {
+      let i = parseInt(taskId, 10) - 1;
+      this.#storage.splice(i, 1);
+
+      for (i; i < this.#storage.length; i += 1) this.#storage[i].index = this.#storage[i].index - 1;
+      this.updateLocalStorage();
+    }
+
+    allCompleted() {
+      return this.#storage.filter((task) => task.completed === true);
+    }
+
     updateIndex(updatedIndexArr) {
       updatedIndexArr = updatedIndexArr.map((ele) => ele.title);
       const output = [];

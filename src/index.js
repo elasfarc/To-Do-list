@@ -4,7 +4,9 @@
 import './style.css';
 import ToDoList from './todo.js';
 
-import { closestElementToCurrentDrag, displayTasks, addTaskFirstClassFunc } from './domHelpers.js';
+import {
+  closestElementToCurrentDrag, displayTasks, addTaskFirstClassFunc, removeAllCompletedHandler,
+} from './domHelpers.js';
 
 export const todo = new ToDoList();
 const tasksWrapper = document.querySelector('.list-wrapper');
@@ -21,3 +23,6 @@ tasksWrapper.addEventListener('dragover', (event) => {
 const addForm = document.forms.add_task;
 
 addTaskFirstClassFunc(addForm, todo);
+
+const removeAllComplete = document.querySelector('.rmv-completed-action p');
+removeAllComplete.addEventListener('click', removeAllCompletedHandler);

@@ -31,15 +31,27 @@ export function domAfterReorder(e) {
 function editHandler(e) {
   e.preventDefault();
   const userInput = e.target.value;
+  const taskId = todo.storage
+    .find((ele) => ele.description === e.target.dataset.currentValue)
+    .index;
   if (userInput.trim()) {
-    const taskId = todo.storage
-      .find((ele) => ele.description === e.target.dataset.currentValue)
-      .index;
     todo.descriptionUpdate(taskId, userInput);
-    e.target.dataset.currentValue = userInput;
+  } else {
+    e.target.parentElement.parentElement.remove();
+    todo.removeTask(taskId);
   }
+  e.target.dataset.currentValue = userInput;
 }
-
+export function removeAllCompletedHandler() {
+  const completedTasks = todo.allCompleted();
+  completedTasks.forEach((task) => {
+    document.querySelector(`[data-current-value= "${task.description}"]`)
+      .parentElement
+      .parentElement
+      .remove();
+    todo.removeTask(task.index);
+  });
+}
 export function emptyTaskComponent(task, obj) {
   const fragment = document.createDocumentFragment();
   const listItem = document.createElement('li');
@@ -64,7 +76,7 @@ export function emptyTaskComponent(task, obj) {
   listItem.innerHTML += `
 
       <div action="" class='form' name='add_task'>
-          <input class='text-input' type="text" name='task_description' value='${task.description}' data-current-value='${task.description}'>
+          <input class='text-input' type="text" name='task_description' value='${task.description}' data-current-value='${task.description}' >
       </div>
       <span class="icon-move">
         <i class="icon fas fa-ellipsis-v"></i>
