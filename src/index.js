@@ -1,13 +1,14 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/prefer-default-export */
+
 import './style.css';
 import ToDoList from './todo.js';
 
 import { closestElementToCurrentDrag, displayTasks, addTaskFirstClassFunc } from './domHelpers.js';
 
-
-const todo = new ToDoList();
+export const todo = new ToDoList();
 const tasksWrapper = document.querySelector('.list-wrapper');
 tasksWrapper.append(displayTasks(todo));
-
 
 tasksWrapper.addEventListener('dragover', (event) => {
   event.preventDefault();
@@ -17,7 +18,6 @@ tasksWrapper.addEventListener('dragover', (event) => {
   else tasksWrapper.insertBefore(currentDragableTask, closest);
 });
 
-
 const addForm = document.forms.add_task;
 
-addTaskFirstClassFunc(addForm, todo)
+addTaskFirstClassFunc(addForm, todo);

@@ -69,26 +69,34 @@ li {
 .form {
   width: 100%;
   border: none;
+  font-style: italic;
+  font-size: inherit;
+  letter-spacing: 1.5px;
+}
+
+.title-add-form {
   border-bottom: 2px solid rgb(235, 235, 235);
-  font-style: italic;
-  font-size: inherit;
-  letter-spacing: 1.5px;
 }
+
 .add-task-input {
-  width: 90%;
-  border: none;
   font-style: italic;
-  font-size: inherit;
-  letter-spacing: 1.5px;
-}
-.add-task-input:focus {
-  outline: none;
 }
 
 .add-task-input::placeholder {
   opacity: 0.6;
   word-spacing: 1px;
   letter-spacing: 0;
+}
+
+.text-input {
+  width: 90%;
+  border: none;
+  font-size: inherit;
+  letter-spacing: 1.5px;
+}
+
+.text-input:focus {
+  outline: none;
 }
 
 .task {
@@ -101,14 +109,26 @@ li {
   opacity: 0;
 }
 
-.task .internal-text {
+.task .text-input {
   margin-right: auto;
   margin-left: 2rem;
 }
 
-.task-status:checked ~ .internal-text {
+.current-drag > .form .text-input {
+  background-color: rgba(31, 216, 21, 0.019);
+}
+
+.task-status:checked ~ .form .text-input {
   color: rgb(166, 166, 166);
   text-decoration: line-through;
+}
+
+.onFocus {
+  background-color: rgba(245, 228, 71, 0.389);
+}
+
+.onFocus-input {
+  background-color: rgba(245, 228, 71, 0.0119);
 }
 
 .task .icon-move {

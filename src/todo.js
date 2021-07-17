@@ -34,6 +34,13 @@ export default class ToDoList {
       this.updateLocalStorage();
     }
 
+    descriptionUpdate(taskId, value) {
+      this.#storage
+        .find((task) => task.index === parseInt(taskId, 10))
+        .description = value;
+      this.updateLocalStorage();
+    }
+
     updateIndex(updatedIndexArr) {
       updatedIndexArr = updatedIndexArr.map((ele) => ele.title);
       const output = [];
