@@ -22,18 +22,21 @@
         </header>
         <div class='list-container'>
             <label class='list-title'>
-                <input class='form' type="text" value="DEMO">
+                <input class='form title-add-form' type="text" value="DEMO">
                 <span class='icon-sync'>
                     <i class="icon fas fa-sync"></i>
                 </span>
             </label>
-            <input class='form' type="text" placeholder="Add to your list...">
+            <form class='form title-add-form' name='add_task'>
+                <input class='text-input add-task-input' type="text" name='task_description' placeholder="Add to your list...">
+            </form>
 
            <ul class="list-wrapper">
 
            </ul>
            <div class='rmv-completed'>
-               <a class='rmv-completed-action' href="#"><p>
+               <a class='rmv-completed-action' href="#">
+                   <p>
                    clear all completed
                </p></a>
            </div>
