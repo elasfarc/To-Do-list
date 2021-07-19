@@ -4,6 +4,8 @@
 
 > a simple to do list
 
+[live version](https://elasfarc.github.io/To-Do-list/dist/)
+
 ![screen](https://raw.githubusercontent.com/elasfarc/To-Do-list/feature-structure-list/sc.png)
 
 ## Built With
@@ -12,9 +14,6 @@
 - CSS
 - Html
 
-# Live version
-
-[@livedemo]https://elasfarc.github.io/To-Do-list/dist/
 
 
 ## Getting Started
