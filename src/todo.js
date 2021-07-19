@@ -5,7 +5,8 @@ import Task from './task.js';
 export default class ToDoList {
     #storage;
 
-    constructor() {
+    constructor(listName = 'DEMO') {
+      this.listName = listName;
       this.#storage = JSON.parse(localStorage.getItem('tasks')) || [];
       this.updateLocalStorage();
     }

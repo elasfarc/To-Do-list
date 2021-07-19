@@ -26,3 +26,8 @@ addTaskFirstClassFunc(addForm, todo);
 
 const removeAllComplete = document.querySelector('.rmv-completed-action p');
 removeAllComplete.addEventListener('click', removeAllCompletedHandler);
+
+const listName = document.querySelector('.list-name');
+listName.addEventListener('change', (event)=>{
+  todo.listName = event.target.value;
+})
