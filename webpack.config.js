@@ -3,8 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
-  mode: 'development',
-
   entry: './src/index.js',
   devtool: 'inline-source-map',
   devServer: {
@@ -27,5 +25,6 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
     ],
+
   },
 };

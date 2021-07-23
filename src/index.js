@@ -3,9 +3,10 @@
 
 import './style.css';
 import ToDoList from './todo.js';
+import { removeAllCompletedHandler } from './deleteAll.js';
 
 import {
-  closestElementToCurrentDrag, displayTasks, addTaskFirstClassFunc, removeAllCompletedHandler,
+  closestElementToCurrentDrag, displayTasks, addTaskFirstClassFunc,
 } from './domHelpers.js';
 
 export const todo = new ToDoList();
@@ -28,6 +29,6 @@ const removeAllComplete = document.querySelector('.rmv-completed-action p');
 removeAllComplete.addEventListener('click', removeAllCompletedHandler);
 
 const listName = document.querySelector('.list-name');
-listName.addEventListener('change', (event)=>{
+listName.addEventListener('change', (event) => {
   todo.listName = event.target.value;
-})
+});

@@ -42,16 +42,7 @@ function editHandler(e) {
   }
   e.target.dataset.currentValue = userInput;
 }
-export function removeAllCompletedHandler() {
-  const completedTasks = todo.allCompleted();
-  completedTasks.forEach((task) => {
-    document.querySelector(`[data-current-value= "${task.description}"]`)
-      .parentElement
-      .parentElement
-      .remove();
-    todo.removeTask(task.index);
-  });
-}
+
 export function emptyTaskComponent(task, obj) {
   const fragment = document.createDocumentFragment();
   const listItem = document.createElement('li');
