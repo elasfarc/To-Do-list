@@ -84,5 +84,70 @@ describe('ToDoList', () => {
     });
   });
 
-  
+  describe('#removeTask', () => {
+    localStorage.clear();
+
+    const todolist = new ToDoList();
+    todolist.addTask({ description: 'task1' });
+    const task2 = todolist.addTask({ description: 'task2' });
+    todolist.addTask({ description: 'task3' });
+
+    it('removes the task from the storage based on it\'s index ', () => {
+      todo.removeTask(task2.index - 1);
+
+      expect(JSON.parse(localStorage.__STORE__.tasks).length).toBe(2);
+      expect(JSON.parse(localStorage.__STORE__.tasks)[1].description).toBe('task3');
+    });
+  });
+
+  describe('remove all completed tasks from the DOM', () => {
+    localStorage.clear();
+
+    test('Check addTodo able add todo to todoList', () => {
+      localStorage.clear();
+
+      const todolis = new ToDoList();
+      const task1 = todolis.addTask({ description: 'task1', completed: true });
+      const task2 = todolis.addTask({ description: 'task2', completed: false });
+
+      document.body.innerHTML = `
+              <input id="newTodoInput" />
+              <button id="addTodoBtn">Add todo</button>
+              <ul class="list-wrapper">
+
+                <li class="task" draggable="true" id="1"><input class="task-status" type="checkbox">
+                    <div action="" class="form" name="add_task">
+                        <input class="text-input" type="text" name="task_description" value="task1" data-current-value="task1">
+                    </div>
+               </li>
+
+               <li class="task" draggable="true" id="2"><input class="task-status" type="checkbox">
+                    <div action="" class="form" name="add_task">
+                        <input class="text-input" type="text" name="task_description" value="task2" data-current-value="task2">
+                    </div>
+               </li>
+              </ul>
+              <div class="rmv-completed">
+                <a class="rmv-completed-action" href="#">
+                    <p>
+                    clear all completed
+                </p></a>
+              </div>
+            `;
+      require('../src/todo');
+
+      const newTodoInput = document.getElementById('newTodoInput');
+      const container = document.querySelector('.list-wrapper');
+
+      const deleteAllCompleted = document.querySelector('.rmv-completed-action p');
+
+      deleteAllCompleted.addEventListener('click', removeAllCompletedHandler(todolis));
+      deleteAllCompleted.click();
+
+      const tasks = container.querySelectorAll('li');
+
+      expect(tasks).toHaveLength(1);
+      expect(tasks[0].id).toBe('2');
+    });
+  });
 });
