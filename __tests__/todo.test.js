@@ -23,5 +23,29 @@ describe('ToDoList', () => {
     });
   });
 
+  describe('#statusUpdate', () => {
+    describe('when task status is not completed', () => {
+      it('marks it completed', () => {
+        const myTask = todo.addTask({ description: 'mmm' });
+        const { index } = myTask;
+        todo.statusUpdate(index);
+
+        expect(myTask.completed).toBe(true);
+        expect(JSON.parse(localStorage.__STORE__.tasks)[myTask.index - 1].completed).toEqual(true);
+      });
+      describe('when task status is completed', () => {
+        it('marks it uncompleted', () => {
+          const myTask = todo.addTask({ description: 'mmm', completed: true });
+          const { index } = myTask;
+          todo.statusUpdate(index);
+
+          expect(myTask.completed).toBe(false);
+          expect(JSON.parse(localStorage.__STORE__.tasks)[myTask.index - 1].completed).toEqual(false);
+        });
+      });
+    });
+    localStorage.clear();
+  });
+
   
 });
