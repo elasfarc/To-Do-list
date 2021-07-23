@@ -47,5 +47,42 @@ describe('ToDoList', () => {
     localStorage.clear();
   });
 
+  describe('#updateIndex', () => {
+    localStorage.clear();
+    const task1 = todo.addTask({ description: 'task1' });
+    const task2 = todo.addTask({ description: 'task2' });
+    const task3 = todo.addTask({ description: 'task3' });
+
+    expect(task1.index).toEqual(1);
+    expect(task2.index).toEqual(2);
+    expect(task3.index).toEqual(3);
+
+    it('It updates the index of draged item based on the new position', () => {
+      const afterDragAndDropOrder = [
+        {
+          id: '2',
+          title: 'task2',
+        },
+        {
+          id: '1',
+          title: 'task1',
+        },
+        {
+          id: '3',
+          title: 'task3',
+        },
+      ];
+
+      todo.updateIndex(afterDragAndDropOrder);
+
+      expect(task1.index).toEqual(2);
+      expect(task2.index).toEqual(1);
+      expect(task3.index).toEqual(3);
+
+      localStorage.clear();
+      jest.clearAllMocks();
+    });
+  });
+
   
 });
