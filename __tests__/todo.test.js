@@ -1,6 +1,8 @@
 /**
  * @jest-environment jsdom
 */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable max-len */
 import ToDoList from '../src/todo.js';
 import { removeAllCompletedHandler } from '../src/deleteAll.js';
 
@@ -100,15 +102,15 @@ describe('ToDoList', () => {
     });
   });
 
-  describe('remove all completed tasks from the DOM', () => {
+  describe('#removeAllCompletedHandler', () => {
     localStorage.clear();
 
-    test('Check addTodo able add todo to todoList', () => {
+    test('remove all completed tasks from the DOM', () => {
       localStorage.clear();
 
       const todolis = new ToDoList();
-      const task1 = todolis.addTask({ description: 'task1', completed: true });
-      const task2 = todolis.addTask({ description: 'task2', completed: false });
+      todolis.addTask({ description: 'task1', completed: true });
+      todolis.addTask({ description: 'task2', completed: false });
 
       document.body.innerHTML = `
               <input id="newTodoInput" />
@@ -134,9 +136,7 @@ describe('ToDoList', () => {
                 </p></a>
               </div>
             `;
-      require('../src/todo');
 
-      const newTodoInput = document.getElementById('newTodoInput');
       const container = document.querySelector('.list-wrapper');
 
       const deleteAllCompleted = document.querySelector('.rmv-completed-action p');
