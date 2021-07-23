@@ -15,11 +15,12 @@ export default class ToDoList {
       return this.#storage;
     }
 
-    addTask({ description }) {
+    addTask({ description, completed = false }) {
       const taskId = this.nextTaskId();
-      const task = new Task({ index: taskId, description });
+      const task = new Task({ index: taskId, description, completed });
       this.#storage.push(task);
       this.updateLocalStorage();
+      // console.log('*******', task ,"&&&&&&")
       return task;
     }
 
